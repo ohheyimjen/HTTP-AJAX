@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import FriendsList from './friendsList';
 
 
 class App extends Component {
@@ -8,7 +9,7 @@ class App extends Component {
   constructor() {
       super();
       this.state = {
-          friends: []
+          apple: []
       };
   }
 
@@ -19,7 +20,7 @@ componentDidMount() {
       .then(response => {
           console.log(response);
           this.setState({
-              friends: response.data
+              apple: response.data
           });
       })
       .catch(function(error) {
@@ -28,11 +29,13 @@ componentDidMount() {
 }
 
   render() {
+    console.log(this.state);
     return ( 
       
-      <div className="friends">
+      <div className="App">
         <h2>Friends!</h2>
-        
+        <FriendsList friends={this.state.apple} />
+
         
         
       </div>
