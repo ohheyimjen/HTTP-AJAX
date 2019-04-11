@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+
 
 class FriendForm extends React.Component {
     
@@ -30,10 +30,15 @@ class FriendForm extends React.Component {
     }
 
     handleSubmit = e => {
-        e. preventDefault();
+        e.preventDefault();
+        if(!this.props.currentFriend) {
+            this.props.addFriend({
+                ...this.state
+            });
+        }
 
     this.props.addFriend({...this.state})
-        // //call axios for post request. Use same endpoint (/friends) as the data you're fetching
+     //call axios for post request. Use same endpoint (/friends) as the data you're fetching
    
              this.setState({
                 id: '',
@@ -48,13 +53,6 @@ class FriendForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input 
-                type='text' 
-                name='id' 
-                value={this.state.id} 
-                onChange={this.handleChange} 
-                placeholder='id' >
-                </input>
                 <input 
                 type='text' 
                 name='name' 
